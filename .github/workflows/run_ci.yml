@@ -25,6 +25,7 @@ jobs:
             iac_technology_version: "1.7.5"
             repo_terragrunt_version: "0.99.1"
             cloud_provider: "Azure"
+            checkov_custom_policy_file_path: ".github/policy.yml"
             environments: |
                 develop: dev
                 test: test
