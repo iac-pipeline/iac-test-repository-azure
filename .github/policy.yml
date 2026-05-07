@@ -1,0 +1,17 @@
+metadata:
+  name: "Ensure Azure Storage Account does not use LRS replication"
+  id: "CKV_CUSTOM_AZ_4"
+  category: "BACKUP_AND_RECOVERY"
+  severity: "MEDIUM"
+ 
+scope:
+  provider: terraform
+ 
+definition:
+  cond_type: attribute
+  resource_types:
+    - azurerm_storage_account
+  attribute: account_replication_type
+  operator: not_equals
+  value: "LRS"
+ 
