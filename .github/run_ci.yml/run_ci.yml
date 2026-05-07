@@ -1,0 +1,33 @@
+name: run-ci
+on:
+    workflow_call:
+
+    pull_request:
+        #opened is set so a CI can run when a PR is created
+        branches:
+            - main
+            - test
+            - develop
+        types: [opened, synchronize, reopened, closed]
+
+
+permissions:
+  pull-requests: write
+  actions: read
+  security-events: write
+  contents: read
+
+jobs:
+    run-ci:
+        uses: iac-pipeline/iac-pipeline/.github/workflows/terraform_ci.yml@main
+        with:
+            iac_technology: "Terraform"
+            iac_technology_version: "1.7.5"
+            repo_terragrunt_version: "0.99.1"
+            cloud_provider: "Azure"
+            environments: |
+                develop: dev
+                test: test
+                main: prod
+        secrets:
+            cloud_token: '${{ secrets.CLOUD_PROVIDER_SECRET }}'
