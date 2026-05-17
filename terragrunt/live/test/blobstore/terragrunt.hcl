@@ -7,5 +7,5 @@ terraform {
 }
 
 inputs = {
-    env_prefix = "test1"
+    env_prefix = "test"
 }
